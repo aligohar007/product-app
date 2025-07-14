@@ -6,7 +6,11 @@
     </div>
 
   <h1 style="font-family: Arial, Helvetica, sans-serif; text-align: center;" v-if="loading">Loading...</h1>
-  <p>{{ error }}</p>
+    <div v-if="loading" class="spinner-container">
+  <div class="spinner"></div>
+</div>
+
+  <h4>{{ error }}</h4>
 
   <ul class="setlist" v-if="!loading && !error">
     <li
@@ -56,8 +60,7 @@ const SearchProduct = () => {
       if(title === '' ){
          filteredProducts.value  = productdata.value.filter(p => p.id <= 8)
       }
-      else
-      {
+      else if(!loading.value && !error.value){
           filteredProducts.value = productdata.value.filter((p)=>
              p.title.toLowerCase().includes(title)
           )
@@ -126,6 +129,26 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   width: 80%;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
  @media screen and (max-width: 600px) {
   .input-container {
