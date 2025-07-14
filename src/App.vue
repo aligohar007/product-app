@@ -12,7 +12,7 @@
     <li
       v-for="(product, index) in filteredProducts"
       :key="index"
-      style="list-style: none; padding: 10px; border:
+      style="list-style: none; padding: 10px; border :
        1px solid #ccc; border-radius: 8px; margin-bottom: 10px; width: 50%;"
 
     >
